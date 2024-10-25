@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-
+use App\Http\Controllers\TodoListController;
 
 
 /*
@@ -16,12 +16,30 @@ use App\Http\Controllers\PostController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', [PostController::class, 'index'])->name('index');
+
 
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/', [PostController::class, 'index'])->name('index');
+
+Route::controller(TodoListController::class)->middleware(['auth'])->group(function(){
+    
+    Route::post('/lists/store', 'store')->name('store');
+    Route::get('/lists/create', 'create')->name('create');
+    Route::get('/lists/show', 'show')->name('show');
+    Route::get('/lists/archievement', 'archievement_list')->name('archievement_list');
+    Route::put('/lists/{list}/update', 'update')->name('update');
+    Route::put('/lists/lists/{list}/archievement', 'archievement')->name('archievement');
+    Route::get('/lists/{list}/edit', 'edit')->name('edit');
+    Route::delete('/lists/{list}/delete', 'delete')->name('delete');
+});
+
+Route::controller(PostController::class)->middleware(['auth'])->group(function(){
+    Route::get('/', 'index')->name('index');
+    Route::put('/lists/lists/{list}/post', 'post')->name('post');
+    
+});
+Route::post('/post/like', [LikeController::class, 'likePost']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
