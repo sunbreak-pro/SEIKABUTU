@@ -7,10 +7,46 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Comment;
+use App\Models\TodoList;
+use App\Models\Like;
+
+
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function todo_lists()
+    {
+        return $this->hasMany(TodoList::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    //フォローしているユーザー
+    public function followee()
+    {
+        return $this->belongsToMany(User::class, 'follows','followee', 'follower');
+        
+        
+    }
+
+    //フォローされているユーザー
+    public function follower()
+    {
+        
+        return $this->belongsToMany(User::class, 'follows','follower','followee');
+        
+    }
 
     /**
      * The attributes that are mass assignable.
