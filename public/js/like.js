@@ -1,11 +1,12 @@
 const likeBtn = document.querySelector(".like-btn");
 likeBtn.addEventListener("click", async (e) => {
+    console.log('hello');
     const clickedEl = e.target;
     clickedEl.classList.toggle("liked");
 
-    const postId = e.target.id;
+    const listId = e.target.id;
 
-    const res = await fetch("/post/like", {
+    const res = await fetch("/list/like", {
         //リクエストメソッドはPOST
         method: "POST",
         headers: {
@@ -16,7 +17,7 @@ likeBtn.addEventListener("click", async (e) => {
                 .querySelector('meta[name="csrf-token"]')
                 .getAttribute("content"),
         },
-        body: JSON.stringify({ post_id: postId }),
+        body: JSON.stringify({ todo_list_id: listId }),
     })
         .then((res) => res.json())
         .then((data) => {

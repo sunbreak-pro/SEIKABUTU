@@ -7,13 +7,14 @@
                 <form action="/lists/{{ $list->id }}/delete" id="form_{{ $list->id }}" method="post">
                     @csrf
                     @method('DELETE')
-                    <button type="button" onclick="deleteList({{ $list->id }})">達成済みを取消にする</button>
+                    <button type="button" onclick="deleteList({{ $list->id }})">未達成にする</button>
                 </form>
-                
+
+
                 <form action="lists/{{ $list->id }}/post" method="post">
                     @csrf
                     @method('PUT')
-                    <button type="submit" onclick="upPost({{ $list->id }})">投稿する！</button>
+                    <input type="submit" value="投稿する！" onclick="upPost({{ $list->id }})" class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-1 py-1 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"/>
                 </form>
             </div><br>
         @endforeach
