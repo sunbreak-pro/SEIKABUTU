@@ -1,9 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 h1 {
-    @apply text-3xl font-bold my-2  text-white;
-    
+    @apply text-3xl font-bold my-2 text-white ;
+
+    border: 10px double skyblue;
+    text-align: center;
+    font-size: 40px;
 }
 h2 {
     @apply text-2xl font-bold my-2 text-white;
@@ -14,12 +18,13 @@ h3 {
 a {
     @apply text-blue-600 underline;
 }
+
 body{
-    @apply text-white;
+    color:rgb(90, 107, 237);
 }
-input{
-    @apply text-black;
-}
+
+
+
 
 @import "./style.css";
 @tailwind base;

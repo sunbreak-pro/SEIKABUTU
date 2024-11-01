@@ -27,6 +27,8 @@ class TodoList extends Model
 
     public function isLikedByAuthUser() :bool
     {
+        //自身がいいねしているのかどうか判定するメソッド（しているならtrue,していないならfalseを返す）
+    
         //認証済ユーザーid（自身のid）を取得
         $authUserId = \Auth::id();
         //空の配列を定義。後続の処理で、いいねしたユーザーのidを全て格納していくときに使う。
@@ -36,7 +38,7 @@ class TodoList extends Model
         foreach($this->likes as $listLike){
             //array_pushメソッドで第一引数に配列、第二引数に配列に格納するデータを定義し、配列を作成できる。
             //今回は$likersArrという空の配列にいいねをした全てのユーザーのidを格納している。
-            array_push($likersArr,$listLike->user_id);
+            array_push($likersArr,$postLike->user_id);
 
         }
         //in_arrayメソッドを利用し、認証済ユーザーid（自身のid）が上記で作成した配列の中に存在するかどうか判定している
@@ -47,6 +49,7 @@ class TodoList extends Model
             return false;
         }
     }
+
 
     protected $fillable = [
         'text',

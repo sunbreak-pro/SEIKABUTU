@@ -18,8 +18,9 @@ Route::controller(TodoListController::class)->middleware(['auth'])->group(functi
     Route::get('/lists/create', 'create')->name('create');
     Route::get('/lists/show', 'show')->name('show');
     Route::get('/lists/archievement', 'archievement_list')->name('archievement_list');
+    Route::put('/lists/{list}/back' ,'back')->name('back');
     Route::put('/lists/{list}/update', 'update')->name('update');
-    Route::put('/lists/lists/{list}/archievement', 'archievement')->name('archievement');
+    Route::put('/lists/{list}/archievement', 'archievement')->name('archievement');
     Route::get('/lists/{list}/edit', 'edit')->name('edit');
     Route::delete('/lists/{list}/delete', 'delete')->name('delete');
 });
@@ -31,7 +32,7 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
 });
 
 
-Route::post('/list/like', [LikeController::class, 'likeList']);
+Route::post('/lists/like', [LikeController::class, 'likeList']);
 
 
 Route::get('/dashboard', function () {

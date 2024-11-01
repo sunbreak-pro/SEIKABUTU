@@ -38,18 +38,25 @@ class TodoListController extends Controller
         $query=TodoList::query();
         $query->where('archievement', '=', 0);
         $list =$query->get();
-        return view('lists.show')->with(['lists' => $list]);
+        return view('/lists/show')->with(['lists' => $list]);
+    }
+
+    public function back(TodoList $list){
+        $list['archievement'] = 0;
+        $list->save();
+        $query=TodoList::query();
+        return redirect('lists/show')->with(['lists' => $list]);
     }
 
     public function store(TodoList $list, TodoListRequest $request) 
     {
-        
-        $image_url = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
-        
         $input = $request['list'];
         $user_id = Auth::id();
         $input['user_id'] = $user_id;
-        $input['image_url'] = $image_url;
+        if($request->file('image')){ //画像ファイルが送られた時だけ処理が実行される
+            $image_url = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+            $input += ['image_url' => $image_url];
+        }
         $input['post'] = 0;
         $input['archievement'] = 0;
         $list->fill($input)->save();
@@ -65,19 +72,23 @@ class TodoListController extends Controller
     return redirect('/lists/show');
     }
 
-    public function archievement(TodoList $list){
+    public function archievement(TodoList $list, Post $post){
         $list['archievement'] = 1;
         $list->save();
         $query=TodoList::query();
         $query->where('archievement', '=', 1);
         $list =$query->get();
-        return view('lists.archievement')->with(['lists' => $list]);
+        return redirect('/lists/archievement')->with(['lists' => $list])->with(['post' => $post]);
     }
 
-    public function archievement_list(TodoList $list){
+    public function archievement_list(TodoList $list, Post $post){
         $query=TodoList::query();
         $query->where('archievement', '=', 1);
         $list=$query->get();
-        return view('lists.archievement')->with(['lists' => $list]);
+        $query->where('post', '=', 0);
+        $list =$query->get();
+        return view('lists.archievement')->with(['lists' => $list])->with(['post' => $post]);
     }
+
+    
 }
