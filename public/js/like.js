@@ -1,6 +1,6 @@
 const likeBtn = document.querySelector(".like-btn");
 likeBtn.addEventListener("click", async (e) => {
-    console.log('hello');
+
     const clickedEl = e.target;
     clickedEl.classList.toggle("liked");
 

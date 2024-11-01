@@ -18,6 +18,7 @@
         }
     </style>
     <h1>掲示板</h1>
+   
 
     <div class='posted'>
         @foreach($lists as $list)
@@ -27,9 +28,8 @@
                     <div class="p-6 text-gray-900">
                         <p>ユーザー名：{{$list->user->name}}</p>
                         <p name="{{ $list->text }}">達成したTodo：{{ $list->text }}</p>
+                        <img src="{{ $list->image_url }}" alt="画像が読み込めません。">
                         
-                        <h1>いいね機能実装方法</h1>
-                        <div><p>{{$list->content}}</p></div> 
                         @auth
                             @if($list->isLikedByAuthUser())
 
@@ -50,31 +50,36 @@
                         @guest
                             <p>loginしていません</p>
                         @endguest
+
+
                         <script>
-                        function setLikeButtonListeners() {
-                            const likeBtns = document.querySelectorAll('.like-btn');
-                            likeBtns.forEach(likeBtn => {
-                                likeBtn.addEventListener('click', async (e) => {
-                                    const clickedEl = e.target;
-                                    clickedEl.classList.toggle('liked');
-                                    const listId = e.target.id;
-                                    const res = await fetch('/list/like', {
-                                        method: 'POST',
-                                        headers: {
-                                            'Content-Type': 'application/json',
-                                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                                        },
-                                        body: JSON.stringify({ list_id: listId })
-                                    })
-                                    .then((res) => res.json())
-                                    .then((data) => {
-                                        clickedEl.nextElementSibling.innerHTML = data.likesCount;
-                                    })
-                                    .catch(() => alert('処理が失敗しました。画面を再読み込みし、通信環境の良い場所で再度お試しください。'));
+                            function setLikeButtonListeners() {
+                                const likeBtns = document.querySelectorAll('.like-btn');
+                                likeBtns.forEach(likeBtn => {
+                                    likeBtn.addEventListener('click', async (e) => {
+                                        const clickedEl = e.target;
+                                        clickedEl.classList.toggle('liked');
+                                        const listId = e.target.id;
+                                        const res = await fetch('/lists/like', {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                                            },
+                                            body: JSON.stringify({ list_id: listId })
+                                        })
+                                        .then((res) => res.json())
+                                        .then((data) => {
+                                            clickedEl.nextElementSibling.innerHTML = data.likesCount;
+                                        })
+                                        
+                                        
+                                        .catch(() =>alert(
+                                            "処理が失敗しました。画面を再読み込みし、通信環境の良い場所で再度お試しください。"))
+                                    });
                                 });
-                            });
-                        }
-                        setLikeButtonListeners();
+                            }
+                            setLikeButtonListeners();
                         
                         </script>
                         

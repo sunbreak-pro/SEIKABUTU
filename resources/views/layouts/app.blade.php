@@ -14,7 +14,7 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        {{-- 追加（！！コードは自身のものに書き換えてください！！） --}}
+        
         <script src="https://kit.fontawesome.com/0dd3e07ddc.js" crossorigin="anonymous"></script>
         
         <meta name="csrf-token" content="{{ csrf_token() }}">

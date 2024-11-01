@@ -6,7 +6,8 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('index') }}">
-                    <img src="{{ asset('/image/memo.svg')}}" width="40px">
+                    <img src="{{ asset('/images/memo.svg')}}" width="40px">
+
                     </a>
                 </div>
 
