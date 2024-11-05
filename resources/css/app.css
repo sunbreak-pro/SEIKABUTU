@@ -5,9 +5,10 @@
 h1 {
     @apply text-3xl font-bold my-2 text-white ;
 
+    font-size: 50px;
     border: 10px double skyblue;
-    text-align: center;
-    font-size: 40px;
+    text-align:center;
+    background:gray;
 }
 h2 {
     @apply text-2xl font-bold my-2 text-white;
@@ -18,7 +19,10 @@ h3 {
 a {
     @apply text-blue-600 underline;
 }
-
+img {
+    width: 96px;
+    height: 96px;
+    }
 body{
     color:rgb(90, 107, 237);
 }
