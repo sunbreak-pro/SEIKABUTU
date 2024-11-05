@@ -1,4 +1,10 @@
 <x-app-layout>
+    <style>
+        h1{
+            font-size:30px;
+            background:;
+        }
+    </style>
     <h1>達成済みリスト</h1><br>
 
     <div class='todo_lists'>

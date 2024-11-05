@@ -1,6 +1,12 @@
 <x-app-layout>
-        <h1>Todoリスト一覧</h1><br>
+    <style>
+        h1{
+            font-size:30px;
+            background:;
+        }
+    </style>
 
+        <h1>Todoリスト一覧</h1><br>
             <div class='todo_lists'>
             @foreach($lists as $list)
             <div class="py-12">
@@ -36,7 +42,6 @@
             @endforeach
             </div>
 
-        
         <script>
             function deleteList(id) {
                 'use strict'
@@ -45,6 +50,7 @@
                     document.getElementById(`formDelete_${id}`).submit();
                 }
             }
+
             function postList(id) {
                 'use strict'
 
