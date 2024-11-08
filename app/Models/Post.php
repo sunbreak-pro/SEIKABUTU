@@ -11,18 +11,11 @@ class Post extends Model
 {
     use HasFactory;
 
-    public function comments()
-    {
-        return $this->hasMany(Comment::class);
-    }
-
     public function todo_list()
     {
         return $this->belongsTo(TodoList::class);
     }
 
-    
-    
 protected $fillable = [
     'text',
     'todo_list_id',

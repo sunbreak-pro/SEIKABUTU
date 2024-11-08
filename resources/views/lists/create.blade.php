@@ -1,5 +1,5 @@
 <x-app-layout>
-    <h1 class="positioned">Todo作成:</h1>
+    <h1 class="positioned">Todo作成</h1>
         <form action="/lists/store" method="POST" enctype="multipart/form-data">
             @csrf
 
@@ -27,7 +27,7 @@
                 </script>
 
                 <style>
-                .create, p
+                
                 {
                 text-align: center;
                 

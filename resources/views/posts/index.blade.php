@@ -30,59 +30,78 @@
                         <p name="{{ $list->text }}">達成したTodo：{{ $list->text }}</p>
                         <img src="{{ $list->image_url }}" alt="画像が読み込めません。">
                         
-                        @auth
-                            @if($list->isLikedByAuthUser())
+                        <div class="comments-section">
+                            <h4>コメント</h4>
+                            <form action="{{ route('comments.store', $list->id) }}" method="POST">
+                                @csrf
+                                <textarea name="content" rows="3" placeholder="コメントを入力"></textarea>
+                                <button type="submit">コメントを投稿</button>
+                            </form>
 
-                                <div class="flexbox">
+                            <div class="comments-list">
+                                @if($list->comments && $list->comments->count() > 0)
+                                    @foreach ($list->comments as $comment)
+                                        <div class="comment">
+                                            <strong>{{ $comment->user->name }}</strong> <small>{{ $comment->created_at }}</small>
+                                            <p>{{ $comment->text }}</p>
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <p>コメントはまだありません。</p>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="likes">
+                            @auth
+                                @if($list->isLikedByAuthUser())
+
+                                    <div class="flexbox">
+                                        
+                                        <i class="fa-solid fa-star like-btn liked" id={{$list->id}}></i>
+                                        <p class="count-num">{{$list->likes->count()}}</p>
+                                    </div>
+                                @else
+                                    <div class="flexbox">
                                     
-                                    <i class="fa-solid fa-star like-btn liked" id={{$list->id}}></i>
-                                    <p class="count-num">{{$list->likes->count()}}</p>
-                                </div>
-                            @else
-                                <div class="flexbox">
-                                
-                                    <i class="fa-solid fa-star like-btn" id={{$list->id}}></i>
-                                    <p class="count-num">{{$list->likes->count()}}</p>
-                                </div>
-                            @endif
-                        @endauth
-
-                        @guest
-                            <p>loginしていません</p>
-                        @endguest
-
+                                        <i class="fa-solid fa-star like-btn" id={{$list->id}}></i>
+                                        <p class="count-num">{{$list->likes->count()}}</p>
+                                    </div>
+                                @endif
+                            @endauth
+                        </div>
 
                         <script>
-                            function setLikeButtonListeners() {
-                                const likeBtns = document.querySelectorAll('.like-btn');
-                                likeBtns.forEach(likeBtn => {
-                                    likeBtn.addEventListener('click', async (e) => {
+                            document.addEventListener('DOMContentLoaded', () => {
+                            // ドキュメント全体に1度だけイベントリスナーを追加
+                            if (!document.likeButtonListenerAdded) {  // フラグを使って重複を防ぐ
+                                document.addEventListener('click', async (e) => {
+                                    // .like-btnクラスを持つ要素がクリックされた場合
+                                    if (e.target.classList.contains('like-btn')) {
+                                        console.log('ボタンがクリックされました'); // デバッグ用ログ
                                         const clickedEl = e.target;
                                         clickedEl.classList.toggle('liked');
-                                        const listId = e.target.id;
-                                        const res = await fetch('/lists/like', {
-                                            method: 'POST',
-                                            headers: {
-                                                'Content-Type': 'application/json',
-                                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                                            },
-                                            body: JSON.stringify({ list_id: listId })
-                                        })
-                                        .then((res) => res.json())
-                                        .then((data) => {
+                                        const listId = clickedEl.id;
+                                        try {
+                                            const response = await fetch('/lists/like', {
+                                                method: 'POST',
+                                                headers: {
+                                                    'Content-Type': 'application/json',
+                                                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                                                },
+                                                body: JSON.stringify({ list_id: listId })
+                                            });
+                                            const data = await response.json();
                                             clickedEl.nextElementSibling.innerHTML = data.likesCount;
-                                        })
-                                        
-                                        
-                                        .catch(() =>alert(
-                                            "処理が失敗しました。画面を再読み込みし、通信環境の良い場所で再度お試しください。"))
-                                    });
+                                        } catch (error) {
+                                            alert("処理が失敗しました。画面を再読み込みし、通信環境の良い場所で再度お試しください。");
+                                        }
+                                    }
                                 });
-                            }
-                            setLikeButtonListeners();
-                        
+                                // フラグを設定して二重登録を防止
+                                document.likeButtonListenerAdded = true;
+                                }
+                            });
                         </script>
-                        
                     </div>
                 </div>
             </div>
