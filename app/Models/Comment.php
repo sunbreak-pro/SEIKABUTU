@@ -12,13 +12,20 @@ class Comment extends Model
 {
     use HasFactory;
 
-    public function post()   
+    public function todo_list()   
     {
-        return $this->belongsTo(Post::class);
+        return $this->belongsTo(TodoList::class);
     }
 
     public function user()   
     {
         return $this->belongsTo(User::class);
     }
+    protected $table = 'comments';
+    
+    protected $fillable = [
+        'user_id',
+        'todo_list_id',
+         'text',
+    ];
 }

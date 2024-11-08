@@ -5,10 +5,11 @@
 h1 {
     @apply text-3xl font-bold my-2 text-white ;
 
-    font-size: 50px;
-    border: 10px double skyblue;
+    font-size: 25px;
+    border: 2px double skyblue;
     text-align:center;
-    background:gray;
+    background:black;
+    color:yellowgreen;
 }
 h2 {
     @apply text-2xl font-bold my-2 text-white;
@@ -20,17 +21,25 @@ a {
     @apply text-blue-600 underline;
 }
 img {
-    width: 96px;
-    height: 96px;
+    width: 170px;
+    height: 170px;
+    display: inline-block;
+    text-align: center;
+
     }
+
+#headerIcon {
+    width: 45px;
+}
 body{
     color:rgb(90, 107, 237);
 }
+p{
+    font-size:20px;
 
-
-
-
-@import "./style.css";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+}
+.text{
+    
+    position: relative; 
+    left:10px;
+}
