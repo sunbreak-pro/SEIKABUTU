@@ -26,6 +26,6 @@ class Comment extends Model
     protected $fillable = [
         'user_id',
         'todo_list_id',
-         'text',
+        'text',
     ];
 }

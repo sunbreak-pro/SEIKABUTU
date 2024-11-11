@@ -16,9 +16,17 @@
         .fa-star{
             font-size: 30px;
         }
+
     </style>
-    <h1>掲示板</h1>
-   
+    <div class="py-10">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    <h1>掲示板</h1>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class='posted'>
         @foreach($lists as $list)
@@ -26,44 +34,51 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
+                        
                         <p>ユーザー名：{{$list->user->name}}</p>
                         <p name="{{ $list->text }}">達成したTodo：{{ $list->text }}</p>
                         <img src="{{ $list->image_url }}" alt="画像が読み込めません。">
                         
                         <div class="comments-section">
-                            <h4>コメント</h4>
-                            <form action="{{ route('comments.store', $list->id) }}" method="POST">
+                            <h4>コメント一覧</h4>
+
+                            <form action="/lists/{{ $list->id }}/comments" method="POST">
                                 @csrf
-                                <textarea name="content" rows="3" placeholder="コメントを入力"></textarea>
+                                <textarea name="text" rows="3" placeholder="コメントを入力"></textarea>
                                 <button type="submit">コメントを投稿</button>
                             </form>
 
                             <div class="comments-list">
-                                @if($list->comments && $list->comments->count() > 0)
-                                    @foreach ($list->comments as $comment)
-                                        <div class="comment">
-                                            <strong>{{ $comment->user->name }}</strong> <small>{{ $comment->created_at }}</small>
-                                            <p>{{ $comment->text }}</p>
-                                        </div>
-                                    @endforeach
+                            @if ($list->comments->count() > 0)
+                                @foreach ($list->comments as $comment)
+                                    
+                                    <div class="comment">
+                                        <strong>{{ $comment->user->name }}</strong>
+                                        <small>{{ $comment->created_at->format('Y-m-d H:i') }}</small>
+                                        <p>{{ $comment->text }}</p>
+                                    </div>
+                                    
+                                @endforeach
                                 @else
-                                    <p>コメントはまだありません。</p>
+                                        <p>コメントはまだありません。</p>
                                 @endif
                             </div>
-                        </div>
+                        </div><br>
+                        
                         <div class="likes">
                             @auth
                                 @if($list->isLikedByAuthUser())
 
                                     <div class="flexbox">
-                                        
+                                    <p>いいね！</p>
                                         <i class="fa-solid fa-star like-btn liked" id={{$list->id}}></i>
                                         <p class="count-num">{{$list->likes->count()}}</p>
                                     </div>
                                 @else
                                     <div class="flexbox">
-                                    
+                                    <p>いいね！</p>
                                         <i class="fa-solid fa-star like-btn" id={{$list->id}}></i>
+                                        
                                         <p class="count-num">{{$list->likes->count()}}</p>
                                     </div>
                                 @endif
