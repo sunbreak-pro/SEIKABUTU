@@ -22,10 +22,10 @@ Route::controller(TodoListController::class)->middleware(['auth'])->group(functi
     Route::get('/lists/archievement', 'archievement_list')->name('archievement_list');
     Route::put('/lists/{list}/update', 'update')->name('update');
     Route::put('/lists/{list}/archievement', 'archievement')->name('archievement');
+    Route::put('/lists/{list}/back', 'back')->name('back');
     Route::get('/lists/{list}/edit', 'edit')->name('edit');
     Route::delete('/lists/{list}/delete', 'delete')->name('delete');
 });
-
 
 Route::controller(PostController::class)->middleware(['auth'])->group(function(){
     Route::get('/', 'index')->name('index');
@@ -35,7 +35,6 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
 Route::post('/lists/like', [LikeController::class, 'likeList']);
 
 Route::post('/lists/{list}/comments', [CommentController::class, 'store'])->name('comments.store');
-
 
 
 Route::get('/dashboard', function () {

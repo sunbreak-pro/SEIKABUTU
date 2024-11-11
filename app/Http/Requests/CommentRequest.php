@@ -9,8 +9,7 @@ class CommentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'comment.text' => 'required|string',
-
+            'text' => 'required|string',
         ];
     }
 }

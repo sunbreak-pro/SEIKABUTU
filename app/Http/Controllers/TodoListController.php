@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\TodoList;
+use App\Models\Comment;
+use App\Http\Controllers\CommentController;
 use App\Http\Requests\TodoListRequest;
 use App\Models\Post;
 use App\Http\Requests\PostRequest;
@@ -12,8 +14,9 @@ use Cloudinary;
 
 class TodoListController extends Controller
 {
-    public function index(TodoList $list, Post $post){
-        return view('posts.index')->with(['lists' => $list])->with(['post' => $post]);  
+    public function index(TodoList $list, Post $post, Comment $comment){
+        
+        return view('posts.index')->with(['lists' => $list])->with(['post' => $post])->with(['comments' => $comment]);
     }
 
     public function create(TodoList $list){
@@ -35,10 +38,11 @@ class TodoListController extends Controller
     }
 
     public function show(TodoList $list){
+        
         $query=TodoList::query();
         $query->where('archievement', '=', 0);
         $list =$query->get();
-        return view('/lists/show')->with(['lists' => $list]);
+        return view('/lists.show')->with(['lists' => $list]);
     }
 
     public function back(TodoList $list){
