@@ -1,66 +1,90 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# 成果物
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+## 🥗 アプリのUrl
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+https://seika-jiman-d6cbc9d3dc79.herokuapp.com
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🥗 開発環境・使用技術・ツール
 
-## Laravel Sponsors
+<H3>x日間(1日あたりy~z時間)</H3>
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+<H3>FE
+<a href="https://skillicons.dev">
+   <img src="https://skillicons.dev/icons?i=typescript,nextjs,tailwind"/>
+</a>
+<h3>環境，コード管理
+<a href="https://skillicons.dev">
+   <img src="https://skillicons.dev/icons?i=docker,github,git,vscode"/>
+</a>
 
-### Premium Partners
+<h3>デプロイ
+<a href="https://skillicons.dev">
+   <img src="https://skillicons.dev/icons?i=vercel"/>
+</a>
+<h3>UI・ロゴ
+<a href="https://skillicons.dev">
+   <img src="https://skillicons.dev/icons?i=blender,figma,photoshop"/>
+</a>
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## 🥗 ワイヤーフレーム(UI デザイン)・ER 図
 
-## Contributing
+- ワイヤーフレーム(UI デザイン)：リンク
+- ER 図：リンク
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 🥗 動作対象端末・OS
 
-## Code of Conduct
+### 動作対象 OS
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- iOS 13.2.3
+- macOS Sonoma 14.2.1
+- Windows 11
 
-## Security Vulnerabilities
+### ブラウザ
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- safari 17.2.1
+- Arc 1.27.3
+- Chrome 121.0.6167.184
 
-## License
+## 🥗 アプリ機能
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 1. 機能 1
+
+機能 1 の説明
+
+<img style="width:400px" src="スクショ"><img style="width:400px" src="スクショ">
+
+### 2. 機能 2
+
+機能 2 の説明
+<img src="スクショ">
+
+### 3. 機能 3
+
+機能 3 の説明
+<img src="スクショ">
+
+### 4. 機能 4
+
+機能 4 の説明
+
+<img style="width:400px" src="スクショ"><img style="width:400px" src="スクショ">
+
+## 🥗 工夫点・改善点
+
+### 工夫点
+
+工夫点を書く．
+
+### 改善点
+
+改善点を書く．
+
+## 🥗 免責事項
+
+この作成物および同梱物を使用したことによって生じたすべての障害・損害・不具合等に関しては，私と私の関係者および私の所属するいかなる団体・組織とも，一切の責任を負いません．各自の責任においてご使用ください．
