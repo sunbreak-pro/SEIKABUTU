@@ -35,17 +35,14 @@ class User extends Authenticatable
     //フォローしているユーザー
     public function followee()
     {
-        return $this->belongsToMany(User::class, 'follows','followee', 'follower');
-        
-        
+        return $this->belongsToMany(User::class, 'follows', 'followee', 'follower');
     }
 
     //フォローされているユーザー
     public function follower()
     {
-        
-        return $this->belongsToMany(User::class, 'follows','follower','followee');
-        
+
+        return $this->belongsToMany(User::class, 'follows', 'follower', 'followee');
     }
 
     /**
