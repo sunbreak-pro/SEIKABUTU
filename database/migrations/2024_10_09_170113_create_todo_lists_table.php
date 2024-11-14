@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('todo_lists', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('text' ,200);
+            $table->string('text', 200);
             $table->integer('post');
             $table->integer('archievement');
-            $table->string('image_url' ,100)->nullable();
+            $table->string('image_url', 100)->nullable();
+            $table->dateTime('expired_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

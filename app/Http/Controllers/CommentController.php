@@ -20,6 +20,7 @@ class CommentController extends Controller
         $comments->text = $request['text']; // コメントテキストを設定
         // コメントを保存
         $comments->save();
-        return redirect('/')->with('message', 'コメントが追加されました！');
+        return redirect('/');
+        
         }
 }

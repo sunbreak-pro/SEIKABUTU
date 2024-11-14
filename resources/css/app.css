@@ -5,11 +5,11 @@
 h1 {
     @apply text-3xl font-bold my-2 text-white ;
 
-    font-size: 25px;
-    border: 2px double skyblue;
+    font-size: 50px;
+    border: 5px double yellow;
     text-align:center;
-    background:black;
-    color:yellowgreen;
+    padding: 5%;
+    color:yellow;
 }
 h2 {
     @apply text-2xl font-bold my-2 text-white;
@@ -21,7 +21,8 @@ h3 {
 img {
     width: 170px;
     height: 170px;
-    position: relative; 
+    position: relative;
+    text-align: center;
     }
 
 #headerIcon {
@@ -36,10 +37,44 @@ text-align: left;
 font-size:20px;
 }
 
+/* コメントの枠の調整 */
+.comments-container {
+    max-width: 600px;
+    /* 必要に応じて変更 */
+    width: 100%;
+}
+
 #click{
     display: flex;
-    justify-content: flex-start;
-    text-align: center;
+    justify-content: flex-end;
+    
     font-size:20px;
     gap:10px 20px;
+}
+
+#btn{
+    position:fixed;
+    bottom:30px;
+    right:30px;
+    cursor:pointer;
+    width:100px;
+    height:100px;
+    border-radius: 30%;
+  }
+
+  .file-select::file-selector-button{
+    font-weight: bold;
+  color: white;
+  background: black;
+  font-size: 14px;
+  border: 0;
+  border-radius: 10em;
+  padding: 8px 16px;
+  text-align: center;
+  }
+
+  .userIcon{
+    display: flex;
+    
+    align-items: center;
 }
