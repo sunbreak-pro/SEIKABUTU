@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Cloudinary;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -24,20 +26,26 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(ProfileUpdateRequest $request, User $user): RedirectResponse
     {
-        $request->user()->fill($request->safe()->only(['name', 'email']));
+        $user = $request->user();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
-        $path = null;
-        if ($request->hasFile('picture')){
-            $path = $request->file('picture')->store('profile-icons', 'public');
-        $request->user()->profile_photo_path = $path;
+        // フィールドを安全に取得して更新
+        $user->fill($request->safe()->only(['name', 'email']));
+
+        // メールアドレスが更新されたら認証をリセット
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
         }
 
-        $request->user()->save();
+        // 画像のアップロード処理
+        if ($request->hasFile('image')) {
+            $image_url = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+            $user->profile_photo_path = $image_url;  // ユーザーのprofile_photo_pathフィールドに直接代入
+        }
+
+        // データベースへ保存
+        $user->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
