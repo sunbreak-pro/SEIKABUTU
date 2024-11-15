@@ -12,7 +12,7 @@ https://seika-jiman-d6cbc9d3dc79.herokuapp.com
 
 ## 🥗 開発環境・使用技術・ツール
 
-<H3>x日間(1日あたりy~z時間)</H3>
+<H3>60日間(1日あたり2~5時間)</H3>
 
 <H3>FE
 <a href="https://skillicons.dev">

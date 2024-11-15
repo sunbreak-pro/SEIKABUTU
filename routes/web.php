@@ -6,7 +6,8 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\TodoListController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentController;
-use App\Http\Controllers\Request;
+use App\Http\Controllers\FollowController;
+
 
 
 Route::get('/', function () {
@@ -15,7 +16,6 @@ Route::get('/', function () {
 
 
 Route::controller(TodoListController::class)->middleware(['auth'])->group(function () {
-
 
     Route::get('/lists/create', 'create')->name('create');
     Route::get('/lists/show', 'show')->name('show');
@@ -37,6 +37,17 @@ Route::post('/lists/like', [LikeController::class, 'likeList']);
 
 Route::post('/lists/{list}/comments', [CommentController::class, 'store'])->name('comments.store');
 
+
+Route::get('/profile/{id}', [ProfileController::class, 'get_user']);
+
+//フォロー状態の確認
+Route::get('/follow/status/{id}', [FollowController::class, 'check_following']);
+
+//フォロー付与
+Route::post('/follow/add', [FollowController::class, 'following']);
+
+//フォロー解除
+Route::post('/follow/remove', [FollowController::class, 'unfollowing']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

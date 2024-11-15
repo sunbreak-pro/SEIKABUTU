@@ -23,6 +23,14 @@ class ProfileController extends Controller
         ]);
     }
 
+    //follow
+    public function get_user($user_id)
+    {
+
+        $user = User::with('following')->with('followed')->findOrFail($user_id);
+        return response()->json($user);
+    }
+
     /**
      * Update the user's profile information.
      */
