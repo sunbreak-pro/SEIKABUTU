@@ -25,7 +25,7 @@
                             @endif
                         </div>
 
-                        <form id="delete-position" action="/lists/{{ $list->id }}/delete" id="formDelete_{{ $list->id }}" method="post">
+                        <form class="delete-position" action="/lists/{{ $list->id }}/delete" id="formDelete_{{ $list->id }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button type="button" class="w-30 bg-red-600 hover:bg-red-500 text-white rounded px-10 py-2" onclick="deleteList({{ $list -> id }})">削除はここです</button>
@@ -53,10 +53,13 @@
 
     <script>
         function deleteList(id) {
-            'use strict'
-
-            if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
-                document.getElementById(`formDelete_${id}`).submit();
+            const form = document.getElementById(`formDelete_${id}`);
+            if (form) {
+                if (confirm('本当に削除しますか？')) { // 削除確認ダイアログ
+                    form.submit(); // フォーム送信
+                }
+            } else {
+                console.error(`Form with id formDelete_${id} not found.`);
             }
         }
 

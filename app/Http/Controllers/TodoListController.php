@@ -23,7 +23,6 @@ class TodoListController extends Controller
         return redirect('/lists/show');
     }
 
-
     public function edit(TodoList $list)
     {
         return view('lists.edit')->with(['list' => $list]);
