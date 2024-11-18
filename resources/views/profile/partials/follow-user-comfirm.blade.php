@@ -16,8 +16,8 @@
                 <h2>{{ $user->name }}'s Profile</h2>
 
                 <div>
-                    <strong>フォロー数: </strong>{{ $user->following->count() }}人
-                    <strong>フォロワー数: </strong>{{ $user->followed->count() }}人
+                    <strong>フォロー数: </strong>{{ $user->followee_id->count() }}人
+                    <strong>フォロワー数: </strong>{{ $user->follower_id->count() }}人
                 </div>
 
                 <div class="mt-4">
@@ -41,8 +41,8 @@
                 <div class="mt-4">
                     <h3>フォロー中のユーザー</h3>
                     <ul>
-                        @foreach ($user->following as $following)
-                        <li>{{ $following->name }}</li>
+                        @foreach ($user->followee_id as $followee_id)
+                        <li>{{ $followee_id->name }}</li>
                         @endforeach
                     </ul>
                 </div>
@@ -50,8 +50,8 @@
                 <div class="mt-4">
                     <h3>フォロワー</h3>
                     <ul>
-                        @foreach ($user->followed as $follower)
-                        <li>{{ $follower->name }}</li>
+                        @foreach ($user->follower_id as $follower_id)
+                        <li>{{ $follower_id->name }}</li>
                         @endforeach
                     </ul>
                 </div>
