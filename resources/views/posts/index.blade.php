@@ -59,6 +59,12 @@
                             <img src="{{ $list->image_url }}" alt="画像がないよ！">
                             @endif
 
+                            <form class="delete-position" action="/posts/{{ $list->id }}/delete" id="formDelete_{{ $list->id }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button" class="w-30 bg-red-600 hover:bg-red-500 text-white rounded px-10 py-2" onclick="deleteList({{ $list -> id }})">削除はここです</button>
+                            </form>
+
                             <div class="likes">
 
                                 @auth
@@ -113,6 +119,15 @@
     </div>
     <button type="button" id="btn" class="mt-2 bg-white bg-opacity-30 text-yellow-500 py-1 px-3 rounded">トップに行かない？</button>
     <script>
+        function deleteList(id) {
+            'use strict'
+
+            if (confirm('一度削除すれば復元できません。\nよろしいですか？')) {
+                document.getElementById(`formDelete_${id}`).submit();
+            } else {
+                console.error(`Form with id formDelete_${id} not found.`);
+            }
+        }
         const btn = document.getElementById("btn");
 
         btn.addEventListener("click", () => {

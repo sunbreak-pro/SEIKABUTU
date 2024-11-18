@@ -21,6 +21,12 @@ class PostController extends Controller
         return view('posts.index')->with(['lists' => $list])->with(['post' => $post]);
     }
 
+    public function indexDelete(TodoList $list)
+    {
+        $list->delete();
+        return redirect('/');
+    }
+
     public function post(TodoList $list)
     {
         $list['post'] = 1;

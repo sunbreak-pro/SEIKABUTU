@@ -26,11 +26,13 @@ Route::controller(TodoListController::class)->middleware(['auth'])->group(functi
     Route::post('/lists/store', 'store')->name('store');
     Route::get('/lists/{list}/edit', 'edit')->name('edit');
     Route::delete('/lists/{list}/delete', 'delete')->name('delete');
+    Route::delete('/posts/{list}/delete', 'indexDelete')->name('delete');
 });
 
 Route::controller(PostController::class)->middleware(['auth'])->group(function () {
     Route::get('/', 'index')->name('index');
     Route::put('/lists/lists/{list}/post', 'post')->name('post');
+    Route::delete('/posts/{list}/delete', 'indexDelete')->name('delete');
 });
 
 Route::post('/lists/like', [LikeController::class, 'likeList']);
