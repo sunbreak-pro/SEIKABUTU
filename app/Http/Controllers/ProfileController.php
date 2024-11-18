@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Cloudinary;
 use App\Models\User;
+use App\Models\Follow;
 
 class ProfileController extends Controller
 {
@@ -23,12 +24,24 @@ class ProfileController extends Controller
         ]);
     }
 
-    //follow
     public function get_user($user_id)
     {
 
         $user = User::with('following')->with('followed')->findOrFail($user_id);
         return response()->json($user);
+    }
+
+    //follow
+    public function follow($id)
+    {
+        $user = User::findOrFail($id);
+        $followersCount = Follow::where('followed', $id)->count();
+        $followingCount = Follow::where('following', $id)->count();
+
+        // ログインユーザーがこのユーザーをフォローしているかどうかをチェック
+        $isFollowing = Follow::where('following', Auth::id())->where('followed', $id)->exists();
+
+        return view('profile.follow', compact('user', 'followersCount', 'followingCount', 'isFollowing'));
     }
 
     /**

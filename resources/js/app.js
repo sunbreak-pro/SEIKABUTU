@@ -7,6 +7,7 @@ window.Alpine = Alpine;
 Alpine.start();
 
 //いいね機能
+
 document.addEventListener('DOMContentLoaded', () => {
     // ドキュメント全体に1度だけイベントリスナーを追加
     if (!document.likeButtonListenerAdded) {  // フラグを使って重複を防ぐ
@@ -35,28 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         // フラグを設定して二重登録を防止
         document.likeButtonListenerAdded = true;
-        }
-    });
+    }
+});
 
-//現在日を取得
-const last = new Date(document.lastModified);
-const year = last.getFullYear();
-const month = last.getMonth() + 1;
-const date = last.getDate();
-let fixedMonth = month;
-let fixedDate = date;
-if (month < 10) {
-    fixedMonth = "0" + month;
-}
-if (date < 10) {
-    fixedDate = "0" + date;
-}
-const viewDateText = year + "年" + month + "月" + date + "日";
-const datetimeText = year + "-" + fixedMonth + "-" + fixedDate;
-const target = document.getElementById('modified_date');
-target.textContent = viewDateText;
-target.setAttribute("datetime", datetimeText);
-                            
-
-//topにいく
 

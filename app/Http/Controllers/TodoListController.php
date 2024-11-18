@@ -11,11 +11,6 @@ use Cloudinary;
 
 class TodoListController extends Controller
 {
-    public function index(TodoList $list, Post $post, Comment $comment)
-    {
-
-        return view('posts.index')->with(['lists' => $list])->with(['post' => $post])->with(['comments' => $comment]);
-    }
 
     public function create(TodoList $list)
     {

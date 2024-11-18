@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Follow; //Followモデルをインポート
 use Illuminate\Support\Facades\Auth; // Authファサードを読み込む
 
+
 class FollowController extends Controller
 {
     //フォローしているかどうかの状態確認
@@ -44,6 +45,7 @@ class FollowController extends Controller
     //フォローを外す
     public function unfollowing(Request $request)
     {
+
         //削除対象のレコードを検索して削除
         $unfollowing = Follow::where('following', Auth::id())->where('followed', $request->user_id)->delete();
     }

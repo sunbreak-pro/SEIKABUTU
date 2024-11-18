@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Http\Requests\PostRequest;
 use App\Models\TodoList;
-use App\Http\Controllers\TodoListController;
-use App\Http\Requests\TodoRequest;
+use App\Http\Requests\TodoListRequest;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\Request;
+
 
 
 class PostController extends Controller
@@ -16,6 +15,7 @@ class PostController extends Controller
     public function index(Post $post, TodoList $list)
     {
         $query = TodoList::query();
+        $query->where('post', '=', 1);
         $list = $query->get();
 
         return view('posts.index')->with(['lists' => $list])->with(['post' => $post]);

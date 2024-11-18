@@ -3,7 +3,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class=" overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 ">
-                    <h1><a name="title">Todoリスト一覧</a></h1>
+                    <h1><a name="title">あなただけのTodoリスト！</a></h1>
                 </div>
             </div>
         </div>
@@ -20,33 +20,36 @@
                             <p name="{{ $list->id}}">Todo名：{{ $list->text }}</p>
                             <p>作成日：{{ $list->updated_at }}</p>
                             <p>達成期限：{{ $list->expired_at ? $list->expired_at->format('Y-m-d H:i') : '未設定' }}</p>
-                            <img src="{{ $list->image_url }}" alt="画像が読み込めません。">
+                            @if($list->image_url != null)
+                            <img src="{{ $list->image_url }}" alt="画像がないよ！">
+                            @endif
                         </div>
 
-                        <div id="click">
-                            <button class="w-20 bg-green-600 hover:bg-green-500 text-white rounded px-3 py-2">
-                                <a href="/lists/{{ $list->id }}/edit">編集!</a>
-                            </button>
+                        <form id="delete-position" action="/lists/{{ $list->id }}/delete" id="formDelete_{{ $list->id }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" class="w-30 bg-red-600 hover:bg-red-500 text-white rounded px-10 py-2" onclick="deleteList({{ $list -> id }})">削除はここです</button>
+                        </form>
 
-                            <form action="/lists/{{ $list->id }}/delete" id="formDelete_{{ $list->id }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button type="button" class="w-30 bg-red-600 hover:bg-red-500 text-white rounded px-10 py-2" onclick="deleteList({{ $list -> id }})">削除する！</button>
-                            </form>
+                        <div id="click">
+                            <button class="w-30 bg-green-600 hover:bg-green-500 text-white rounded px-10 py-2">
+                                <a href="/lists/{{ $list->id }}/edit">内容変える？</a>
+                            </button>
 
                             <form action="/lists/{{ $list->id }}/archievement" method="post">
                                 @csrf
                                 @method('PUT')
-                                <button type="submit" class="w-30 bg-blue-600 hover:bg-blue-500 text-white rounded px-10 py-2">達成する！</button>
+                                <button type="submit" class="w-30 bg-blue-600 hover:bg-blue-500 text-white rounded px-10 py-2">達成！お見事！</button>
                             </form>
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
         @endforeach
     </div>
-    <button type="button" id="btn" class="mt-2 bg-white bg-opacity-30 text-yellow-500 py-1 px-3 rounded">トップへ</button>
+    <button type="button" id="btn" class="mt-2 bg-white bg-opacity-30 text-yellow-500 py-1 px-3 rounded">トップに行かない？</button>
 
     <script>
         function deleteList(id) {

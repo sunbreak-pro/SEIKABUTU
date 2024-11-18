@@ -44,10 +44,10 @@ Route::get('/profile/{id}', [ProfileController::class, 'get_user']);
 Route::get('/follow/status/{id}', [FollowController::class, 'check_following']);
 
 //フォロー付与
-Route::post('/follow/add', [FollowController::class, 'following']);
+Route::post('/follow/add', [FollowController::class, 'following'])->name('follow.add');
 
 //フォロー解除
-Route::post('/follow/remove', [FollowController::class, 'unfollowing']);
+Route::post('/follow/remove', [FollowController::class, 'unfollowing'])->name('follow.remove');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -56,6 +56,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile/{$id}', [ProfileController::class, 'follow'])->name('profile.follow');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
