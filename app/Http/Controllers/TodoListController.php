@@ -37,14 +37,14 @@ class TodoListController extends Controller
     {
         $query = TodoList::query();
         $id = Auth::id();
-        $query->where('archievement', '=', 0)->where('user_id', '=', $id);
+        $query->where('achievement', '=', 0)->where('user_id', '=', $id);
         $list = $query->get();
         return view('/lists.show', compact('list'))->with(['lists' => $list]);
     }
 
     public function back(TodoList $list)
     {
-        $list['archievement'] = 0;
+        $list['achievement'] = 0;
         $list->save();
         $query = TodoList::query();
         return redirect('lists/show')->with(['lists' => $list]);
@@ -62,7 +62,7 @@ class TodoListController extends Controller
         }
 
         $input['post'] = 0;
-        $input['archievement'] = 0;
+        $input['achievement'] = 0;
 
         if ($request->has('expired_at')) { // もし存在する場合のみ処理
 
@@ -91,30 +91,30 @@ class TodoListController extends Controller
         }
         TodoList::find($id)->update(['image_url' => $image_url]);
 
-        $input_list['archievement'] = 0;
+        $input_list['achievement'] = 0;
         $list->fill($input_list)->save();
         $list->fill($input_image)->save();
         return redirect('/lists/show');
     }
 
-    public function archievement(TodoList $list, Post $post)
+    public function achievement(TodoList $list, Post $post)
     {
-        $list['archievement'] = 1;
+        $list['achievement'] = 1;
         $list->save();
         $query = TodoList::query();
-        $query->where('archievement', '=', 1);
+        $query->where('achievement', '=', 1);
         $list = $query->get();
-        return redirect('/lists/archievement')->with(['lists' => $list])->with(['post' => $post]);
+        return redirect('/lists/achievement')->with(['lists' => $list])->with(['post' => $post]);
     }
 
-    public function archievement_list(TodoList $list, Post $post)
+    public function achievement_list(TodoList $list, Post $post)
     {
         $query = TodoList::query();
         $id = Auth::id();
-        $query->where('archievement', '=', 1)->where('user_id', '=', $id);
+        $query->where('achievement', '=', 1)->where('user_id', '=', $id);
         $list = $query->get();
         $query->where('post', '=', 0);
         $list = $query->get();
-        return view('lists.archievement')->with(['lists' => $list])->with(['post' => $post]);
+        return view('lists.achievement')->with(['lists' => $list])->with(['post' => $post]);
     }
 }

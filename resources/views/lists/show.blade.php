@@ -36,7 +36,7 @@
                                 <a href="/lists/{{ $list->id }}/edit">内容変える？</a>
                             </button>
 
-                            <form action="/lists/{{ $list->id }}/archievement" method="post">
+                            <form action="/lists/{{ $list->id }}/achievement" method="post">
                                 @csrf
                                 @method('PUT')
                                 <button type="submit" class="w-30 bg-blue-600 hover:bg-blue-500 text-white rounded px-10 py-2">達成！お見事！</button>

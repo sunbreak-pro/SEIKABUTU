@@ -19,9 +19,9 @@ Route::controller(TodoListController::class)->middleware(['auth'])->group(functi
 
     Route::get('/lists/create', 'create')->name('create');
     Route::get('/lists/show', 'show')->name('show');
-    Route::get('/lists/archievement', 'archievement_list')->name('archievement_list');
+    Route::get('/lists/achievement', 'achievement_list')->name('achievement_list');
     Route::put('/lists/{list}/update', 'update')->name('update');
-    Route::put('/lists/{list}/archievement', 'archievement')->name('archievement');
+    Route::put('/lists/{list}/achievement', 'achievement')->name('achievement');
     Route::put('/lists/{list}/back', 'back')->name('back');
     Route::post('/lists/store', 'store')->name('store');
     Route::get('/lists/{list}/edit', 'edit')->name('edit');

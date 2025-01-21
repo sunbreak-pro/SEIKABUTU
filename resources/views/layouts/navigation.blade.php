@@ -22,7 +22,7 @@
                     <x-nav-link :href="route('show')" :active="request()->routeIs('show')">
                         {{ __('Todoリストを確認！') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('archievement_list')" :active="request()->routeIs('archievement_list')">
+                    <x-nav-link :href="route('achievement_list')" :active="request()->routeIs('achievement_list')">
                         {{ __('達成済みリスト') }}
                     </x-nav-link>
                     <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
